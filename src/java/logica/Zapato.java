@@ -32,13 +32,13 @@ public class Zapato implements InterfaceZapatos {
     }
        
 
-    public Zapato(String tipoZapato, int talla, String material, int cedulaEmpleado) {
+    public Zapato(int zapatoID, String tipoZapato, int talla, String material, int cedulaEmpleado) {
         this.zapatoID = zapatoID;
         this.tipoZapato = tipoZapato;
         this.talla = talla;
         this.material = material;
-        //this.proveedorID = proveedorID;
-        //this.cedulaEmpleado = cedulaEmpleado;
+        this.proveedorID = proveedorID;
+        this.cedulaEmpleado = cedulaEmpleado;
     }
 
     public Zapato() {

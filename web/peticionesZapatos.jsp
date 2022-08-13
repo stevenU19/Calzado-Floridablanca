@@ -41,6 +41,7 @@
             //, uso de request.getParameter("nombre parametro")
             // creación de objeto y llamado a método guardar              
             
+            // zapatoID
             int talla = Integer.parseInt(request.getParameter("proveedorID"));            
             String tipoZapato = request.getParameter("nombre");
             String material = request.getParameter("ciudad");
