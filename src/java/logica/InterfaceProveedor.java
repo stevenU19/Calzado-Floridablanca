@@ -18,4 +18,6 @@ public interface InterfaceProveedor {
     public boolean actualizarProveedores();
     public List <Proveedor> listarProveedores();
     
+    public Proveedor getProveedor();
+    
 }

@@ -26,19 +26,27 @@ public class Zapato implements InterfaceZapatos {
 
     private int proveedorID;
     private int cedulaEmpleado;
+    
+    private Proveedor proveedor;
+    private Empleado cedula;
 
     public Zapato(int zapatoID) {
         this.zapatoID = zapatoID;
     }
-       
 
-    public Zapato(int zapatoID, String tipoZapato, int talla, String material, int cedulaEmpleado) {
+    public Zapato(int zapatoID, String tipoZapato, int talla, String material, int proveedorID, int cedulaEmpleado) {
         this.zapatoID = zapatoID;
         this.tipoZapato = tipoZapato;
         this.talla = talla;
         this.material = material;
         this.proveedorID = proveedorID;
         this.cedulaEmpleado = cedulaEmpleado;
+    }
+
+    public Zapato(String tipoZapato, int talla, String material) {
+        this.tipoZapato = tipoZapato;
+        this.talla = talla;
+        this.material = material;
     }
 
     public Zapato() {
@@ -94,7 +102,7 @@ public class Zapato implements InterfaceZapatos {
     public void setCedulaEmpleado(int cedulaEmpleado) {
         this.cedulaEmpleado = cedulaEmpleado;
     }
-    
+
     @Override
     public boolean crearZapato() {
         boolean exito = false;
@@ -192,6 +200,30 @@ public class Zapato implements InterfaceZapatos {
             conexion.cerrarConexion();
         }
         return exito;
+    }
+
+    @Override
+    public Zapato getZapato() {
+        ConexionBD conexion = new ConexionBD();
+        String sql = "SELECT * FROM zapatos WHERE zapatoID='" + zapatoID + "';";
+        try {
+            ResultSet rs = conexion.consultarBD(sql);
+            if (rs.next()) {
+                tipoZapato = rs.getString("tipoZapato");
+                talla = rs.getInt("talla");
+                material = rs.getString("material");
+                
+                Proveedor p = new Proveedor(proveedorID);
+                proveedor = p.getProveedor();
+                Empleado e = new Empleado(cedulaEmpleado);
+                cedula = e.getEmpleado();
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Zapato.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            conexion.cerrarConexion();
+        }
+        return this;
     }
 
 }

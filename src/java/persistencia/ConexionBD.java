@@ -23,7 +23,7 @@ public class ConexionBD {
     public ConexionBD() {
         DB_driver = "com.mysql.cj.jdbc.Driver";
         host = "localhost:3306";
-        db = "calzadofloridablanca";
+        db = "CalzadoFloridablanca";
         url = "jdbc:mysql://" + host + "/" + db+"?serverTimezone=UTC"; 		//URL DB
         username = "root"; //root                      			//usuario base de datos global 
         password = "123456"; //MYSQLCentic

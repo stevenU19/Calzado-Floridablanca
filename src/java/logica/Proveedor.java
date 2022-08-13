@@ -27,8 +27,6 @@ public class Proveedor implements InterfaceProveedor {
     public Proveedor(int proveedorID) {
         this.proveedorID = proveedorID;
     }
-    
-    
 
     public Proveedor(int proveedorID, String nombre, String ciudad, int telefono) {
         this.proveedorID = proveedorID;
@@ -161,6 +159,28 @@ public class Proveedor implements InterfaceProveedor {
             conexion.cerrarConexion();
         }
         return proveedores;
+    }
+
+    @Override
+    public Proveedor getProveedor() {
+        String SQL = "SELECT * FROM proveedor WHERE proveedorID=" + this.proveedorID + ";";
+        ConexionBD conexion = new ConexionBD();
+
+        ResultSet rs = conexion.consultarBD(SQL);
+
+        try {
+            if (rs.next()) {
+                this.proveedorID = rs.getInt("proveedorID");
+                this.nombre = rs.getString("nombre");
+                this.ciudad = rs.getString("ciudad");
+                this.telefono = rs.getInt("telefono");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Proveedor.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            conexion.cerrarConexion();
+        }
+        return this;
     }
 
 }

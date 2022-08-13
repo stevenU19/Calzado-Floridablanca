@@ -1,5 +1,5 @@
 
-<%@page import="logica.Zapato"%>
+<%@page import="logica.Empleado"%>
 
 <%-- 
     MODO DEPURACIÓN: Se va actualizando automáticamente-
@@ -24,7 +24,7 @@
         "eliminar",
         "actualizar",
         "listar"
-
+	
     });
 
     String proceso = "" + request.getParameter("proceso");
@@ -39,70 +39,56 @@
 
             //Solicitud de parámetros enviados desde el frontned
             //, uso de request.getParameter("nombre parametro")
-            // creación de objeto y llamado a método guardar              
-            // zapatoID
-            int talla = Integer.parseInt(request.getParameter("proveedorID"));
-            String tipoZapato = request.getParameter("nombre");
-            String material = request.getParameter("material");
-//            int cedulaEmpleado = Integer.parseInt(request.getParameter("telefono"));            
-
-            Zapato z = new Zapato(tipoZapato, talla, material);
-
-            if (z.crearZapato()) {
+            // creación de objeto y llamado a método guardar  
+            
+            int cedula = Integer.parseInt(request.getParameter("cedula"));            
+            String nombre = request.getParameter("nombre");
+            String apellido = request.getParameter("apellido");
+            String correo = request.getParameter("correo");
+            int salario = Integer.parseInt(request.getParameter("salario"));
+            String fechaNacimiento = request.getParameter("fechaNacimiento");
+            
+            Empleado e  = new Empleado(cedula, nombre, apellido, correo, salario, fechaNacimiento);        
+           
+  
+            if (e.crearEmpleado()) { 
                 respuesta += "\"" + proceso + "\": true";
             } else {
                 respuesta += "\"" + proceso + "\": false";
             }
 
         } else if (proceso.equals("eliminar")) {
-            //Solicitud de parámetros enviados desde el frontned
+        //Solicitud de parámetros enviados desde el frontned
             //, uso de request.getParameter("nombre parametro")
             //creación de objeto y llamado a método eliminar
-            int zapatoID = Integer.parseInt(request.getParameter("zapatoID"));
-            Zapato z = new Zapato(zapatoID);
-            if (z.eliminarZapato()) {
+            int cedula = Integer.parseInt(request.getParameter("cedula")); 
+            Empleado e = new Empleado(cedula);
+            if (e.eliminarEmpleado()) {
                 respuesta += "\"" + proceso + "\": true";
             } else {
                 respuesta += "\"" + proceso + "\": false";
             }
 
         } else if (proceso.equals("listar")) {
-            //Solicitud de parámetros enviados desde el frontned
+        //Solicitud de parámetros enviados desde el frontned
             //, uso de request.getParameter("nombre parametro")
-            //creación de objeto y llamado al metodo listar
+           //creación de objeto y llamado al metodo listar
             try {
-                Zapato z = new Zapato();
-                List<Zapato> lista = z.listarZapatos();
-                respuesta += "\"" + proceso + "\": true,\"Zapatos\":" + new Gson().toJson(lista); //IMPORTANTE: Recordar el nombre autores
+                Empleado e = new Empleado();
+                List<Empleado> lista = e.listarEmpleado();
+                respuesta += "\"" + proceso + "\": true,\"Empleados\":" + new Gson().toJson(lista); //IMPORTANTE: Recordar el nombre autores
             } catch (Exception ex) {
-                respuesta += "\"" + proceso + "\": true,\"Zapatos\":[]";
-                Logger.getLogger(Zapato.class.getName()).log(Level.SEVERE, null, ex);
+                respuesta += "\"" + proceso + "\": true,\"Empleados\":[]";
+                Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (proceso.equals("actualizar")) {
             //creación de objeto y llamado al metodo actualizar
-            int zapatoID = Integer.parseInt(request.getParameter("zapatoID"));
-            String tipoZapato = request.getParameter("tipoZapato");
-            int talla = Integer.parseInt(request.getParameter("talla"));
-            String material = request.getParameter("material");
-            int proveedorID = Integer.parseInt(request.getParameter("proveedorID"));
-            int cedulaEmpleado = Integer.parseInt(request.getParameter("cedulaEmpleado"));
-
-            Zapato z = new Zapato(zapatoID, tipoZapato, talla, material, proveedorID, cedulaEmpleado);
-
-            if (z.actualizarZapato()) {
+            int cedula = Integer.parseInt(request.getParameter("cedula")); 
+            Empleado e = new Empleado(cedula);
+            if (e.actualizarEmpleado()) {                     
                 respuesta += "\"" + proceso + "\": true";
             } else {
                 respuesta += "\"" + proceso + "\": false";
-            }
-        } else if (proceso.equals("ListarPorID")) {
-            int zapatoID = Integer.parseInt(request.getParameter("zapatoID"));
-            Zapato z = null;
-            try {
-                z = new Zapato(zapatoID).getZapato();
-                respuesta += "\"" + proceso + "\": true,\"Zapato\":" + new Gson().toJson(z);
-            } catch (Exception ex) {
-                respuesta += "\"" + proceso + "\": false,\"Zapato\":"+new Gson().toJson(z);
-                Logger.getLogger(Zapato.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
@@ -115,7 +101,7 @@
         respuesta += "\"error\": \"INVALID\",";
         respuesta += "\"errorMsg\": \"Lo sentimos, los datos que ha enviado,"
                 + " son inválidos. Corrijalos y vuelva a intentar por favor.\"";
-    }
+    }    
     // Responder como objeto JSON codificación ISO 8859-1.
     respuesta += "}";
     response.setContentType("application/json;charset=iso-8859-1");

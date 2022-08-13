@@ -18,5 +18,6 @@ public interface InterfaceZapatos {
     public boolean actualizarZapato();
     public List <Zapato> listarZapatos();
     
+    public Zapato getZapato();
     
 }

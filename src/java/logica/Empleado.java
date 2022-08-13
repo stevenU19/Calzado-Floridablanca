@@ -29,8 +29,8 @@ public class Empleado implements InterfaceEmpleado {
 
     public Empleado(int cedula) {
         this.cedula = cedula;
-    }   
-  
+    }
+
     public Empleado(int cedula, String nombre, String apellido, String correo, int salario, String fechaNacimiento) {
         this.cedula = cedula;
         this.nombre = nombre;
@@ -100,7 +100,7 @@ public class Empleado implements InterfaceEmpleado {
     public boolean crearEmpleado() {
         boolean exito = false;
         ConexionBD conexion = new ConexionBD();
-        String SQL = "INSERT INTO empleados\n"
+        String SQL = "INSERT INTO empleado\n"
                 + "( cedula, nombre, apellido, correo, salario, fechaNacimiento)\n"
                 + "VALUES( '" + this.cedula + "', '" + this.nombre + "', '" + this.apellido + "', '" + this.correo
                 + "', '" + this.salario + "', '" + this.fechaNacimiento + "');";
@@ -124,7 +124,7 @@ public class Empleado implements InterfaceEmpleado {
     @Override
     public boolean eliminarEmpleado() {
         boolean exito = false;
-        String SQL = "DELETE FROM autores\n"
+        String SQL = "DELETE FROM empleado\n"
                 + "WHERE cedula='" + this.cedula + "';";
         ConexionBD conexion = new ConexionBD();
         if (conexion.setAutoCommitBD(false)) {
@@ -144,7 +144,7 @@ public class Empleado implements InterfaceEmpleado {
     @Override
     public boolean actualizarEmpleado() {
         boolean exito = false;
-        String SQL = "UPDATE autores\n"
+        String SQL = "UPDATE empleado\n"
                 + "SET nombre='" + this.nombre + "', apellido='" + this.apellido + "', correo='" + this.correo
                 + "', salario='" + this.salario + "', fechaNacimiento='" + this.fechaNacimiento + "'\n"
                 + "WHERE cedula='" + this.cedula + "';";
@@ -165,8 +165,8 @@ public class Empleado implements InterfaceEmpleado {
 
     @Override
     public List<Empleado> listarEmpleado() {
-        List<Empleado> autores = new ArrayList<>();
-        String SQL = "SELECT * FROM autores";
+        List<Empleado> empleados = new ArrayList<>();
+        String SQL = "SELECT * FROM empleados";
         ConexionBD conexion = new ConexionBD();
         ResultSet rs = conexion.consultarBD(SQL);
         try {
@@ -180,31 +180,32 @@ public class Empleado implements InterfaceEmpleado {
                 e.setSalario(rs.getInt("salario"));
                 e.setFechaNacimiento(rs.getString("fechaNacimiento"));
 
-                autores.add(e);
+                empleados.add(e);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             conexion.cerrarConexion();
         }
-        return autores;
+        return empleados;
     }
 
     @Override
     public Empleado getEmpleado() {
-        List<Empleado> empleados = new ArrayList<>();
-        String SQL = "SELECT * FROM autores WHERE cedula = '"+this.cedula+"'";
+        String SQL = "SELECT * FROM empleado WHERE codigo='" + this.cedula + "';";
         ConexionBD conexion = new ConexionBD();
+
         ResultSet rs = conexion.consultarBD(SQL);
+
         try {
             Empleado e;
             if (rs.next()) {
                 this.cedula = rs.getInt("cedula");
-                this.apellido = rs.getString("apellido");
-                this.nombre = rs.getString("nombre");
-                this.correo = rs.getString("correo");
+                this.nombre = (rs.getString("nombre"));
+                this.apellido = (rs.getString("apellido"));
+                this.correo = (rs.getString("correo"));
                 this.salario = rs.getInt("salario");
-                this.fechaNacimiento = rs.getString("fechaNacimiento");
+                this.fechaNacimiento = (rs.getString("fechaNacimiento"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
@@ -213,5 +214,5 @@ public class Empleado implements InterfaceEmpleado {
         }
         return this;
     }
-      
+
 }
