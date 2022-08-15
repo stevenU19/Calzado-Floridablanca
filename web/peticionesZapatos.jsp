@@ -40,7 +40,7 @@
             //Solicitud de parámetros enviados desde el frontned
             //, uso de request.getParameter("nombre parametro")
             // creación de objeto y llamado a método guardar              
-            // zapatoID
+            int zapatoID = Integer.parseInt(request.getParameter("zapatoID"));
             int talla = Integer.parseInt(request.getParameter("proveedorID"));
             String tipoZapato = request.getParameter("nombre");
             String material = request.getParameter("material");
@@ -60,6 +60,7 @@
             //creación de objeto y llamado a método eliminar
             int zapatoID = Integer.parseInt(request.getParameter("zapatoID"));
             Zapato z = new Zapato(zapatoID);
+            z.setZapatoID(zapatoID);
             if (z.eliminarZapato()) {
                 respuesta += "\"" + proceso + "\": true";
             } else {

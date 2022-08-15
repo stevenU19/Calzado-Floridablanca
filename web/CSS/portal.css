@@ -1,0 +1,155 @@
+* {
+	font-family: 'Share Tech', sans-serif;
+	font-weight: 100;
+}
+
+body {
+	background-color: rgba(90, 90, 90, 0.637);
+}
+
+.flex-container {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content: center;
+	background: #C4C4C4;
+	margin: 50px 50px;
+	padding: 20px;
+	border: 8px solid #000;
+	outline: 4px solid #094;
+}
+
+.logo {
+	font-weight: 600;
+	font-size: 2.8rem;
+}
+
+nav {
+	padding: 20px 50px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: rgb(78, 78, 78);
+}
+
+ul li {
+	display: inline-block;
+	list-style: none;
+	padding: 6px 20px;
+	font-weight: 500;
+	font-size: 1.7rem;
+	cursor: pointer;
+	transition: all 0.3s ease 0s;
+	color: #000;
+}
+
+ul li:hover {
+	background-color: #5f9;
+	border-radius: 25px;
+	text-decoration: none;
+}
+
+header {
+	padding: 20px 50px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: rgb(99, 99, 99);
+}
+
+ul li {
+	display: inline-block;
+	list-style: none;
+	padding: 6px 20px;
+	font-weight: 500;
+	font-size: 1.3rem;
+	text-decoration: underline;
+	cursor: pointer;
+	transition: all 0.3s ease 0s;
+	color: black;
+}
+
+ul li:hover {
+	background-color: #5f9;
+	border-radius: 25px;
+	text-decoration: none;
+}
+
+.form {
+	min-width: 400px;
+	flex: 1;
+	text-align: center;
+	padding: 30px;
+	order: 5;
+}
+
+.form__input {
+	width: 100%;
+	padding: 7px;
+	margin: 6px 0;
+	border: none;
+	border-bottom: 3px solid #1c7;
+	background: transparent;
+	color: #fff;
+}
+
+.form__input:focus {
+	background: linear-gradient(to left, transparent, #222);
+	outline: none;
+	border-bottom: 3px solid #5f9;
+}
+
+
+.form textarea {
+	min-height: 140px;
+	resize: none;
+}
+
+.form-img {
+	flex: .5;
+	display: flex;
+	padding: 10px;
+	min-width: 300px;
+	max-width: 400px;
+	order: 2;
+}
+
+.form-img div {
+	min-width: 10px;
+}
+
+.img-container {
+	margin: auto;
+}
+
+.img-container div {
+	background-color: #094;
+	border-radius: 50%;
+	text-align: center;
+	padding: 40px;
+}
+
+.form-img img {
+	width: 90%;
+	margin: auto;
+}
+
+.form input[type="submit"] {
+	background-color: #094;
+	border-bottom: none;
+	padding: 12px;
+}
+
+.form input[type="submit"]:hover {
+	background-color: #072;
+	border-bottom: none;
+	padding: 12px;
+}
+
+.form input[type="submit"]:focus {
+	background-color: #072;
+}
+
+.form input[type="submit"]:active {
+	background: linear-gradient(to bottom, #072, #050);
+}
