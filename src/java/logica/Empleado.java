@@ -166,7 +166,7 @@ public class Empleado implements InterfaceEmpleado {
     @Override
     public List<Empleado> listarEmpleado() {
         List<Empleado> empleados = new ArrayList<>();
-        String SQL = "SELECT * FROM empleados";
+        String SQL = "SELECT * FROM empleado";
         ConexionBD conexion = new ConexionBD();
         ResultSet rs = conexion.consultarBD(SQL);
         try {

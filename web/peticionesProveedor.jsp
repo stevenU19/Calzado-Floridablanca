@@ -27,7 +27,7 @@
 	
     });
 
-    String proceso = "" + request.getParameter("guardar");
+    String proceso = "" + request.getParameter("proceso");
 
     // Validación de parámetros utilizados en todos los procesos.
     if (tareas.contains(proceso)) {

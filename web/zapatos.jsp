@@ -51,7 +51,7 @@
                             <label>Cédula del Empleado</label>
                             <!--<input type="text" class="form-control" placeholder="id categoria" ng-model="b1.idCategoria">-->
                             <select class="form-control" ng-model="b1.cedulaEmpleado"> 
-                                <option ng-repeat="c in b1.Empleados" value="{{c.cedulaEmpleado}}">{{c.nombre}}</option>
+                                <option ng-repeat="c in b1.Empleados" value="{{c.cedula}}">{{c.nombre}} {{c.apellido}}</option>
                             </select>
                         </div>
                     </div>

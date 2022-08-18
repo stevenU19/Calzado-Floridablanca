@@ -1,55 +1,66 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-	<title>Enviar Correo - CalzadoFloridablanca</title>
+        <title>Enviar Correo - CalzadoFloridablanca</title>
 
-	<link rel="icon" href="IMAGENES/sign.ico">
-	<link rel="stylesheet" href="CSS/portal.css">
+        <link rel="icon" href="IMAGENES/sign.ico">
+        <link rel="stylesheet" href="CSS/portal.css">
 
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Sen&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Sen&display=swap" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="https://kit.fontawesome.com/62ea397d3a.js" crossorigen="anonymous"></script>
+    </head>
+    <body>
+        <nav>
+            <span class="logo">CALZADO FLORIDABLANCA</span>
+            <ul>
+                <li><a href="index.html">INICIO</a></li>
+                <li><a href="zapatos.jsp">ACTUALIZAR</a></li>
+                <li><a href="index.html">CONSULTAR</a></li>
+            </ul>
+        </nav>
+        <div class="flex-container" ng-app="demoPortal" ng-controller="portalController as p">
+            <form class="form">
+                <div class="form__section">
+                    <input type="text" class="form__input" placeholder="Escriba el Asunto" ng-model="p.asunto">
+                </div>
 
-	<script src="https://kit.fontawesome.com/62ea397d3a.js" crossorigen="anonymous"></script>
-</head>
-<body>
-	<nav>
-		<span class="logo">CALZADO FLORIDABLANCA</span>
-		<ul>
-			<li><a href="index.html">INICIO</a></li>
-			<li><a href="zapatos.jsp">ACTUALIZAR</a></li>
-			<li><a href="index.html">CONSULTAR</a></li>
-		</ul>
-	</nav>
-	<div class="flex-container">
-		<form class="form">
-			<div class="form__section">
-				<input type="text" class="form__input" placeholder="Escriba el Asunto">
-			</div>
+                <div class="form__section">
+                    <input type="email" class="form__input" placeholder="Escriba su Email">
+                </div>
 
-			<div class="form__section">
-				<input type="email" class="form__input" placeholder="Escriba su Email">
-			</div>
+                <div class="form__section">
+                    <textarea class="form__input" placeholder="Escriba su Mensaje"></textarea>
+                </div>
+                <div class="form__section">
+                    <input type="submit" class="form__input" ng-click="p.enviar()">
+                </div>
 
-			<div class="form__section">
-				<textarea class="form__input" placeholder="Escriba su Mensaje"></textarea>
-			</div>
-			<div class="form__section">
-				<input type="submit" class="form__input">
-			</div>
-
-		</form>
-		<div class="form-img">
-			<div class="img-container">
-				<div>
-					<img src="https://i.ya-webdesign.com/images/black-envelope-png-icon-1.png">
-				</div>
-			</div>
-		</div>
-	</div>	
-</body>
+            </form>
+            <div class="form-img">
+                <div class="img-container">
+                    <div>
+                        <img src="https://i.ya-webdesign.com/images/black-envelope-png-icon-1.png">
+                    </div>
+                </div>
+            </div>
+        </div>	
+        <script>
+            
+            var app = angular.module('demoPortal', []);
+            app.controller('portalController', ['$http', controladorPortal]);
+            function controladorPortal($http) {
+                var p=this;
+                p.enviar= function (){
+                    alert(p.asunto);
+                };
+            }
+        </script>
+    </body>
 </html>
