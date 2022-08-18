@@ -20,14 +20,14 @@
 
     //Lista de procesos o tareas a realizar 
     List<String> tareas = Arrays.asList(new String[]{
-        "crear",
+        "guardar",
         "eliminar",
         "actualizar",
         "listar"
 	
     });
 
-    String proceso = "" + request.getParameter("proceso");
+    String proceso = "" + request.getParameter("guardar");
 
     // Validación de parámetros utilizados en todos los procesos.
     if (tareas.contains(proceso)) {

@@ -20,9 +20,10 @@
 
     //Lista de procesos o tareas a realizar 
     List<String> tareas = Arrays.asList(new String[]{
-        "crear",
+        "guardar",
         "eliminar",
         "actualizar",
+        "listarporid",
         "listar"
 
     });
@@ -35,7 +36,7 @@
         // ------------------------------------------------------------------------------------- //
         // -----------------------------------INICIO PROCESOS----------------------------------- //
         // ------------------------------------------------------------------------------------- //
-        if (proceso.equals("crear")) {
+        if (proceso.equals("guardar")) {
 
             //Solicitud de parámetros enviados desde el frontned
             //, uso de request.getParameter("nombre parametro")
@@ -44,9 +45,10 @@
             int talla = Integer.parseInt(request.getParameter("proveedorID"));
             String tipoZapato = request.getParameter("nombre");
             String material = request.getParameter("material");
-//            int cedulaEmpleado = Integer.parseInt(request.getParameter("telefono"));            
+            int proveedorID = Integer.parseInt(request.getParameter("proveedorID"));
+            int cedulaEmpleado = Integer.parseInt(request.getParameter("telefono"));            
 
-            Zapato z = new Zapato(tipoZapato, talla, material);
+            Zapato z = new Zapato(zapatoID, tipoZapato, talla, material, proveedorID, cedulaEmpleado);
 
             if (z.crearZapato()) {
                 respuesta += "\"" + proceso + "\": true";
@@ -74,7 +76,7 @@
             try {
                 Zapato z = new Zapato();
                 List<Zapato> lista = z.listarZapatos();
-                respuesta += "\"" + proceso + "\": true,\"Zapatos\":" + new Gson().toJson(lista); //IMPORTANTE: Recordar el nombre autores
+                respuesta += "\"" + proceso + "\": true,\"Zapatos\":" + new Gson().toJson(lista); //IMPORTANTE: Recordar el nombre 
             } catch (Exception ex) {
                 respuesta += "\"" + proceso + "\": true,\"Zapatos\":[]";
                 Logger.getLogger(Zapato.class.getName()).log(Level.SEVERE, null, ex);

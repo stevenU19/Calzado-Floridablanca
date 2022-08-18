@@ -20,7 +20,7 @@
 
     //Lista de procesos o tareas a realizar 
     List<String> tareas = Arrays.asList(new String[]{
-        "crear",
+        "guardar",
         "eliminar",
         "actualizar",
         "listar"
@@ -35,7 +35,7 @@
         // ------------------------------------------------------------------------------------- //
         // -----------------------------------INICIO PROCESOS----------------------------------- //
         // ------------------------------------------------------------------------------------- //
-        if (proceso.equals("crear")) {
+        if (proceso.equals("guardar")) {
 
             //Solicitud de parámetros enviados desde el frontned
             //, uso de request.getParameter("nombre parametro")

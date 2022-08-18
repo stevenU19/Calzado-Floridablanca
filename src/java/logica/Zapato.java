@@ -23,10 +23,9 @@ public class Zapato implements InterfaceZapatos {
     private String tipoZapato;
     private int talla;
     private String material;
-
     private int proveedorID;
     private int cedulaEmpleado;
-    
+
     private Proveedor proveedor;
     private Empleado cedula;
 
@@ -129,30 +128,36 @@ public class Zapato implements InterfaceZapatos {
     }
 
     @Override
-    public List<Zapato> listarZapatos() {
-        List<Zapato> zapatos = new ArrayList<>();
+    public List<Zapato> listarZapatos() {        
         String SQL = "SELECT * FROM zapatos";
         ConexionBD conexion = new ConexionBD();
-        ResultSet rs = conexion.consultarBD(SQL);
+        List<Zapato> listaZapatos = new ArrayList<>();
+        
         try {
+            ResultSet rs = conexion.consultarBD(SQL);
             Zapato z;
             while (rs.next()) {
                 z = new Zapato();
                 z.setZapatoID(rs.getInt("zapatoID"));
                 z.setTipoZapato(rs.getString("tipoZapato"));
-                //z.setProveedorID(rs.getInt("proveedorID"));
+                z.setTalla(rs.getInt("talla"));
                 z.setMaterial(rs.getString("material"));
-                z.setTalla(rs.getInt("material"));
-                //z.setCedulaEmpleado(rs.getInt("cedulaEmpleado"));
 
-                zapatos.add(z);
+                Empleado e = new Empleado(z.getCedulaEmpleado());
+                z.setCedulaEmpleado(e.getCedula());
+                
+                Proveedor p = new Proveedor(z.getProveedorID());
+                z.setProveedorID(p.getProveedorID());
+                
+                listaZapatos.add(z);
+                
             }
         } catch (SQLException ex) {
             Logger.getLogger(Zapato.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             conexion.cerrarConexion();
         }
-        return zapatos;
+        return listaZapatos;
 
     }
 
@@ -212,7 +217,7 @@ public class Zapato implements InterfaceZapatos {
                 tipoZapato = rs.getString("tipoZapato");
                 talla = rs.getInt("talla");
                 material = rs.getString("material");
-                
+
                 Proveedor p = new Proveedor(proveedorID);
                 proveedor = p.getProveedor();
                 Empleado e = new Empleado(cedulaEmpleado);
