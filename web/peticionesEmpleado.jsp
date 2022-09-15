@@ -23,7 +23,8 @@
         "guardar",
         "eliminar",
         "actualizar",
-        "listar"
+        "listar",
+        "ListarPorID"
 	
     });
 
@@ -43,12 +44,12 @@
             
             int cedula = Integer.parseInt(request.getParameter("cedula"));            
             String nombre = request.getParameter("nombre");
-            String apellido = request.getParameter("apellido");
             String correo = request.getParameter("correo");
             int salario = Integer.parseInt(request.getParameter("salario"));
             String fechaNacimiento = request.getParameter("fechaNacimiento");
+            String numero = request.getParameter("numero");
             
-            Empleado e  = new Empleado(cedula, nombre, apellido, correo, salario, fechaNacimiento);        
+            Empleado e  = new Empleado(cedula, nombre, correo, salario, fechaNacimiento, numero);
            
   
             if (e.crearEmpleado()) { 
@@ -83,12 +84,30 @@
             }
         } else if (proceso.equals("actualizar")) {
             //creación de objeto y llamado al metodo actualizar
-            int cedula = Integer.parseInt(request.getParameter("cedula")); 
-            Empleado e = new Empleado(cedula);
+            int cedula = Integer.parseInt(request.getParameter("cedula"));            
+            String nombre = request.getParameter("nombre");
+            String correo = request.getParameter("correo");
+            int salario = Integer.parseInt(request.getParameter("salario"));
+            String fechaNacimiento = request.getParameter("fechaNacimiento");
+            String numero = request.getParameter("numero");
+            
+            Empleado e  = new Empleado(cedula, nombre, correo, salario, fechaNacimiento, numero);
+            
             if (e.actualizarEmpleado()) {                     
                 respuesta += "\"" + proceso + "\": true";
             } else {
                 respuesta += "\"" + proceso + "\": false";
+            }
+        } if (proceso.equals("ListarPorID")) {
+            int cedula = Integer.parseInt(request.getParameter("cedula"));
+            Empleado e = null;
+            try {
+                e = new Empleado(cedula);
+                e.getEmpleado();
+                respuesta += "\"" + proceso + "\": true,\"Empleado\":" + new Gson().toJson(e);
+            } catch (Exception ex) {
+               respuesta += "\"" + proceso + "\": false,\"Empleado\":" + new Gson().toJson(e);
+                Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 

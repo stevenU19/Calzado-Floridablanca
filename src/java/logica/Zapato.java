@@ -25,7 +25,6 @@ public class Zapato implements InterfaceZapatos {
     private String material;
     private int proveedorID;
     private int cedulaEmpleado;
-
     private Proveedor proveedor;
     private Empleado cedula;
 
@@ -49,7 +48,7 @@ public class Zapato implements InterfaceZapatos {
     }
 
     public Zapato() {
-
+        System.out.println("Zapato Creado");
     }
 
     // ----------- Métodos Getter -----------  
@@ -107,9 +106,9 @@ public class Zapato implements InterfaceZapatos {
         boolean exito = false;
         ConexionBD conexion = new ConexionBD();
         String SQL = "INSERT INTO zapatos\n"
-                + "(tipoZapato, talla, material)\n"
-                + "VALUES( '" + this.tipoZapato + "', '" + this.talla + "', '"
-                + this.material + "');";// "', '" + this.proveedorID + "', '" + this.cedulaEmpleado + "');";
+                + "(tipoZapato, talla, material, cedula, proveedorID)\n"
+                + "VALUES( '" + this.tipoZapato + "', " + this.talla + ", '"
+                + this.material + "', " + this.cedulaEmpleado + ", " + this.proveedorID + ");";
 
         if (conexion.setAutoCommitBD(false)) {
             if (conexion.insertarBD(SQL)) {
@@ -128,29 +127,33 @@ public class Zapato implements InterfaceZapatos {
     }
 
     @Override
-    public List<Zapato> listarZapatos() {        
+    public List<Zapato> listarZapatos() {
         String SQL = "SELECT * FROM zapatos";
         ConexionBD conexion = new ConexionBD();
         List<Zapato> listaZapatos = new ArrayList<>();
-        
+        Zapato z = null;
+
         try {
             ResultSet rs = conexion.consultarBD(SQL);
-            Zapato z;
+
             while (rs.next()) {
-                z = new Zapato();
+                z = new Zapato();              
+                       
                 z.setZapatoID(rs.getInt("zapatoID"));
                 z.setTipoZapato(rs.getString("tipoZapato"));
                 z.setTalla(rs.getInt("talla"));
                 z.setMaterial(rs.getString("material"));
+                
+                z.setProveedorID(rs.getInt("proveedorID"));
+                z.setCedulaEmpleado(rs.getInt("cedula"));                
+
+                Proveedor p = new Proveedor(z.getProveedorID());
+                z.setProveedorID(p.getProveedorID());
 
                 Empleado e = new Empleado(z.getCedulaEmpleado());
                 z.setCedulaEmpleado(e.getCedula());
-                
-                Proveedor p = new Proveedor(z.getProveedorID());
-                z.setProveedorID(p.getProveedorID());
-                
+
                 listaZapatos.add(z);
-                
             }
         } catch (SQLException ex) {
             Logger.getLogger(Zapato.class.getName()).log(Level.SEVERE, null, ex);
@@ -190,8 +193,9 @@ public class Zapato implements InterfaceZapatos {
     public boolean actualizarZapato() {
         boolean exito = false;
         String SQL = "UPDATE zapatos\n"
-                + "SET tipoZapato='" + this.tipoZapato + "', talla='" + this.talla + ", material='" + this.material + "\n"
-                + "WHERE zapatoID='" + this.zapatoID + "';";
+                + "SET tipoZapato='" + this.tipoZapato + "', talla=" + this.talla + ", material='" + this.material + "', cedula=" + this.cedulaEmpleado + ", proveedorID=" + this.proveedorID + "\n"
+                + "WHERE zapatoID=" + this.zapatoID + ";";      
+            
         ConexionBD conexion = new ConexionBD();
         if (conexion.setAutoCommitBD(false)) {
             if (conexion.actualizarBD(SQL)) {
@@ -210,13 +214,15 @@ public class Zapato implements InterfaceZapatos {
     @Override
     public Zapato getZapato() {
         ConexionBD conexion = new ConexionBD();
-        String sql = "SELECT * FROM zapatos WHERE zapatoID='" + zapatoID + "';";
+        String SQL = "SELECT * FROM zapatos WHERE zapatoID=" + zapatoID + ";";
         try {
-            ResultSet rs = conexion.consultarBD(sql);
+            ResultSet rs = conexion.consultarBD(SQL);
             if (rs.next()) {
                 tipoZapato = rs.getString("tipoZapato");
                 talla = rs.getInt("talla");
                 material = rs.getString("material");
+                proveedorID = rs.getInt("proveedorID");
+                cedulaEmpleado = rs.getInt("cedula");
 
                 Proveedor p = new Proveedor(proveedorID);
                 proveedor = p.getProveedor();

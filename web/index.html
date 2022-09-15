@@ -6,7 +6,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Página Principal</title>
-        <link rel="icon" href="IMAGENES/zapato.ico">
+        <link rel="icon" href="IMAGENES/zapatos.ico">
+
         <link rel="stylesheet" href="CSS/style.css">
         <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -19,9 +20,10 @@
             <nav>
                 <span class="logo">CALZADO FLORIDABLANCA</span>
                 <ul>
-                    <li><a href="index.html">INICIO</a></li>
-                    <li><a href="zapatos.jsp">ACTUALIZAR</a></li>
-                    <li><a href="index.html">CONSULTAR</a></li>
+                    <li><a href="index.html" style="text-decoration:none">INICIO</a></li>
+                    <li><a href="zapatos.jsp" style="text-decoration:none">ZAPATOS</a></li>
+                    <li><a href="empleados.jsp" style="text-decoration:none">EMPLEADOS</a></li>
+                    <li><a href="proveedores.jsp" style="text-decoration:none">PROVEEDORES</a></li>
                 </ul>
             </nav>
             <header>
@@ -32,14 +34,21 @@
                     quieres ponerte en contacto con nosotros para soporte técnico, escríbenos:
                 </p>
 
-                <button type="button"><a href="portal.html"></a>Haz click aquí</button>
+                <button type="button" onclick="location.href = 'portal.html'">Haz click aquí</button>
             </header>
             <div class="icons">
-                <i class='bx bxl-facebook'></i>
-                <i class='bx bxl-instagram'></i>
-                <i class='bx bxl-twitter'></i>
-                <i class='bx bxl-youtube'></i>
+                <a href="https://www.facebook.com/" target="_blank"><i class='bx bxl-facebook'></i></a>
+                <a href="https://www.instagram.com/" target="_blank"><i class='bx bxl-instagram'></i></a>
+                <a href="https://www.twitter.com/" target="_blank"><i class='bx bxl-twitter'></i></a>
+                <a href="https://www.youtube.com/" target="_blank"><i class='bx bxl-youtube'></i></a>               
+
+
             </div>
         </div>
+        <script>
+            function redirigir() {
+                window.location.href = "portal.html";
+            }
+        </script>
     </body>
 </html>

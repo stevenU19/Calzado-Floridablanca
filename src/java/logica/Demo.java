@@ -17,10 +17,12 @@ public class Demo {
         //Zapato z = new Zapato("Botas", "Botas estilo NIKE para caballero", "Cuero", 123123);
         //System.out.println(z.crearZapato());
 
-        List<Zapato> lista = new Zapato().listarZapatos();
-        for (Zapato zapato : lista) {
-            System.out.println(zapato);
-        }
+//        List<Zapato> lista = new Zapato().listarZapatos();
+//        for (Zapato zapato : lista) {
+//            System.out.println(zapato);
+//        }
+//        EnvioCorreo.enviarCorreo("Hola Mundo", "Esto es una prueba", "wilfarfan2001@gmail.com");
+        ClaseEnvioCorreo.transfer_to_email("wilmer2194285@correo.uis.edu.co");
 
     }
 

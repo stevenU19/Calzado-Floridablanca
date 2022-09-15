@@ -27,15 +27,16 @@ public class Proveedor implements InterfaceProveedor {
     public Proveedor(int proveedorID) {
         this.proveedorID = proveedorID;
     }
+    
+    public Proveedor() {
+        System.out.println("Proveedor Creado");
+    }
 
     public Proveedor(int proveedorID, String nombre, String ciudad, int telefono) {
         this.proveedorID = proveedorID;
         this.nombre = nombre;
         this.ciudad = ciudad;
         this.telefono = telefono;
-    }
-
-    public Proveedor() {
     }
 
     public int getProveedorID() {
@@ -69,16 +70,17 @@ public class Proveedor implements InterfaceProveedor {
     public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
+    
+    
 
     @Override
     public boolean crearProveedores() {
         boolean exito = false;
         ConexionBD conexion = new ConexionBD();
-        String SQL = "INSERT INTO zapatos\n"
-                + "( nombre, ciudad, telefono)\n"
-                + "VALUES( '" + this.nombre + "', '" + this.ciudad + "', '"
-                + this.telefono + "');";
-
+        String SQL = "INSERT INTO calzadofloridablanca.proveedor\n" +
+                              "(proveedorID, nombre, ciudad, telefono)\n" +
+                              "VALUES(" + this.proveedorID + ", '" + this.nombre + "', '" + this.ciudad + "', " + this.telefono +");";
+ 
         if (conexion.setAutoCommitBD(false)) {
             if (conexion.insertarBD(SQL)) {
                 conexion.commitBD();
@@ -98,7 +100,7 @@ public class Proveedor implements InterfaceProveedor {
     @Override
     public boolean eliminarProveedores() {
         boolean exito = false;
-        String SQL = "DELETE FROM proveedores\n"
+        String SQL = "DELETE FROM proveedor\n"
                 + "WHERE proveedorID='" + this.proveedorID + "';";
         ConexionBD conexion = new ConexionBD();
         if (conexion.setAutoCommitBD(false)) {
@@ -118,8 +120,8 @@ public class Proveedor implements InterfaceProveedor {
     @Override
     public boolean actualizarProveedores() {
         boolean exito = false;
-        String SQL = "UPDATE proveedores\n"
-                + "SET nombre='" + this.nombre + "', ciudad='" + this.ciudad + ", telefono='" + this.telefono + "\n"
+        String SQL = "UPDATE proveedor\n"
+                + "SET nombre='" + this.nombre + "', ciudad='" + this.ciudad + "', telefono='" + this.telefono + "'\n"
                 + "WHERE proveedorID='" + this.proveedorID + "';";
         ConexionBD conexion = new ConexionBD();
         if (conexion.setAutoCommitBD(false)) {
@@ -140,10 +142,10 @@ public class Proveedor implements InterfaceProveedor {
     public List<Proveedor> listarProveedores() {
         List<Proveedor> proveedores = new ArrayList<>();
         String SQL = "SELECT * FROM proveedor";
-        ConexionBD conexion = new ConexionBD();
-        ResultSet rs = conexion.consultarBD(SQL);
-        try {
-            Proveedor p;
+        ConexionBD conexion = new ConexionBD();        
+        Proveedor p = null;        
+        try {            
+            ResultSet rs = conexion.consultarBD(SQL);
             while (rs.next()) {
                 p = new Proveedor();
                 p.setProveedorID(rs.getInt("proveedorID"));
@@ -152,6 +154,7 @@ public class Proveedor implements InterfaceProveedor {
                 p.setTelefono(rs.getInt("telefono"));
 
                 proveedores.add(p);
+                System.out.println("Estos son los datos de proveedor "+p);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Proveedor.class.getName()).log(Level.SEVERE, null, ex);
@@ -163,17 +166,17 @@ public class Proveedor implements InterfaceProveedor {
 
     @Override
     public Proveedor getProveedor() {
-        String SQL = "SELECT * FROM proveedor WHERE proveedorID=" + this.proveedorID + ";";
-        ConexionBD conexion = new ConexionBD();
-
+        String SQL = "SELECT * FROM proveedor WHERE proveedorID=" + this.proveedorID + ";";                
+        ConexionBD conexion = new ConexionBD();        
+        Proveedor p = null;
         ResultSet rs = conexion.consultarBD(SQL);
-
-        try {
+        try {            
             if (rs.next()) {
                 this.proveedorID = rs.getInt("proveedorID");
                 this.nombre = rs.getString("nombre");
                 this.ciudad = rs.getString("ciudad");
                 this.telefono = rs.getInt("telefono");
+                System.out.println("Editar: "+rs.getInt("proveedorID")+" "+rs.getString("nombre")+" "+rs.getString("ciudad")+" "+rs.getInt("telefono"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Proveedor.class.getName()).log(Level.SEVERE, null, ex);

@@ -21,26 +21,26 @@ public class Empleado implements InterfaceEmpleado {
 
     private int cedula;
     private String nombre;
-    private String apellido;
     private String correo;
     private int salario;
     private String fechaNacimiento;
-    private Empleado empleado;
+    private String numero;
 
     public Empleado(int cedula) {
         this.cedula = cedula;
     }
 
-    public Empleado(int cedula, String nombre, String apellido, String correo, int salario, String fechaNacimiento) {
+    public Empleado(int cedula, String nombre, String correo, int salario, String fechaNacimiento, String numero) {
         this.cedula = cedula;
         this.nombre = nombre;
-        this.apellido = apellido;
         this.correo = correo;
         this.salario = salario;
         this.fechaNacimiento = fechaNacimiento;
+        this.numero = numero;
     }
 
     public Empleado() {
+        System.out.println("Empleado Creado");
     }
 
     public int getCedula() {
@@ -57,14 +57,6 @@ public class Empleado implements InterfaceEmpleado {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
     }
 
     public String getCorreo() {
@@ -91,9 +83,17 @@ public class Empleado implements InterfaceEmpleado {
         this.fechaNacimiento = fechaNacimiento;
     }
 
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
     @Override
     public String toString() {
-        return "Empleado{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo + ", salario=" + salario + ", fechaNacimiento=" + fechaNacimiento + '}';
+        return "Empleado{" + "cedula=" + cedula + ", nombre=" + nombre + ", correo=" + correo + ", salario=" + salario + ", fechaNacimiento=" + fechaNacimiento + "numero= " + numero + '}';
     }
 
     @Override
@@ -101,9 +101,9 @@ public class Empleado implements InterfaceEmpleado {
         boolean exito = false;
         ConexionBD conexion = new ConexionBD();
         String SQL = "INSERT INTO empleado\n"
-                + "( cedula, nombre, apellido, correo, salario, fechaNacimiento)\n"
-                + "VALUES( '" + this.cedula + "', '" + this.nombre + "', '" + this.apellido + "', '" + this.correo
-                + "', '" + this.salario + "', '" + this.fechaNacimiento + "');";
+                + "( cedula, nombre, correo, salario, fechaNacimiento, numero)\n"
+                + "VALUES( '" + this.cedula + "', '" + this.nombre + "', '" + this.correo
+                + "', '" + this.salario + "', '" + this.fechaNacimiento + "', '" + this.numero + "');";
 
         if (conexion.setAutoCommitBD(false)) {
             if (conexion.insertarBD(SQL)) {
@@ -145,8 +145,8 @@ public class Empleado implements InterfaceEmpleado {
     public boolean actualizarEmpleado() {
         boolean exito = false;
         String SQL = "UPDATE empleado\n"
-                + "SET nombre='" + this.nombre + "', apellido='" + this.apellido + "', correo='" + this.correo
-                + "', salario='" + this.salario + "', fechaNacimiento='" + this.fechaNacimiento + "'\n"
+                + "SET nombre='" + this.nombre + "', correo='" + this.correo
+                + "', salario='" + this.salario + "', fechaNacimiento='" + this.fechaNacimiento + "', numero='" + this.numero +"' \n"
                 + "WHERE cedula='" + this.cedula + "';";
         ConexionBD conexion = new ConexionBD();
         if (conexion.setAutoCommitBD(false)) {
@@ -168,19 +168,20 @@ public class Empleado implements InterfaceEmpleado {
         List<Empleado> empleados = new ArrayList<>();
         String SQL = "SELECT * FROM empleado";
         ConexionBD conexion = new ConexionBD();
+        Empleado e;
         ResultSet rs = conexion.consultarBD(SQL);
-        try {
-            Empleado e;
+        try {                        
             while (rs.next()) {
                 e = new Empleado();
                 e.setCedula(rs.getInt("cedula"));
                 e.setNombre(rs.getString("nombre"));
-                e.setApellido(rs.getString("apellido"));
                 e.setCorreo(rs.getString("correo"));
                 e.setSalario(rs.getInt("salario"));
                 e.setFechaNacimiento(rs.getString("fechaNacimiento"));
+                e.setNumero(rs.getString("numero"));
 
                 empleados.add(e);
+                System.out.println("Estos son los datos de empleado "+e);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
@@ -192,7 +193,7 @@ public class Empleado implements InterfaceEmpleado {
 
     @Override
     public Empleado getEmpleado() {
-        String SQL = "SELECT * FROM empleado WHERE codigo='" + this.cedula + "';";
+        String SQL = "SELECT * FROM empleado WHERE cedula=" + this.cedula + ";";
         ConexionBD conexion = new ConexionBD();
 
         ResultSet rs = conexion.consultarBD(SQL);
@@ -201,11 +202,11 @@ public class Empleado implements InterfaceEmpleado {
             Empleado e;
             if (rs.next()) {
                 this.cedula = rs.getInt("cedula");
-                this.nombre = (rs.getString("nombre"));
-                this.apellido = (rs.getString("apellido"));
-                this.correo = (rs.getString("correo"));
+                this.nombre = rs.getString("nombre");
+                this.correo = rs.getString("correo");
                 this.salario = rs.getInt("salario");
-                this.fechaNacimiento = (rs.getString("fechaNacimiento"));
+                this.fechaNacimiento = rs.getString("fechaNacimiento");
+                this.numero = rs.getString("numero");
             }
         } catch (SQLException ex) {
             Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);

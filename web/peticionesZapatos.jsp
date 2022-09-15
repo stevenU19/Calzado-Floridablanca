@@ -23,7 +23,7 @@
         "guardar",
         "eliminar",
         "actualizar",
-        "listarporid",
+        "ListarPorID",
         "listar"
 
     });
@@ -42,11 +42,11 @@
             //, uso de request.getParameter("nombre parametro")
             // creación de objeto y llamado a método guardar              
             int zapatoID = Integer.parseInt(request.getParameter("zapatoID"));
-            int talla = Integer.parseInt(request.getParameter("proveedorID"));
-            String tipoZapato = request.getParameter("nombre");
+            int talla = Integer.parseInt(request.getParameter("talla"));
+            String tipoZapato = request.getParameter("tipoZapato");
             String material = request.getParameter("material");
             int proveedorID = Integer.parseInt(request.getParameter("proveedorID"));
-            int cedulaEmpleado = Integer.parseInt(request.getParameter("telefono"));            
+            int cedulaEmpleado = Integer.parseInt(request.getParameter("cedulaEmpleado"));            
 
             Zapato z = new Zapato(zapatoID, tipoZapato, talla, material, proveedorID, cedulaEmpleado);
 
@@ -104,7 +104,7 @@
                 z = new Zapato(zapatoID).getZapato();
                 respuesta += "\"" + proceso + "\": true,\"Zapato\":" + new Gson().toJson(z);
             } catch (Exception ex) {
-                respuesta += "\"" + proceso + "\": false,\"Zapato\":"+new Gson().toJson(z);
+               respuesta += "\"" + proceso + "\": false,\"Zapato\":" + new Gson().toJson(z);
                 Logger.getLogger(Zapato.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

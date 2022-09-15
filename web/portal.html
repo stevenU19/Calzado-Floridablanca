@@ -14,15 +14,16 @@
         <link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Sen&display=swap" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-        <script src="https://kit.fontawesome.com/62ea397d3a.js" crossorigen="anonymous"></script>
+        <script src="https://kit.fontawesome.com/62ea397d3a.js"></script>
     </head>
     <body>
         <nav>
             <span class="logo">CALZADO FLORIDABLANCA</span>
             <ul>
-                <li><a href="index.html">INICIO</a></li>
-                <li><a href="zapatos.jsp">ACTUALIZAR</a></li>
-                <li><a href="index.html">CONSULTAR</a></li>
+                <li><a href="index.html" style="text-decoration:none">INICIO</a></li>
+                <li><a href="zapatos.jsp" style="text-decoration:none">ZAPATOS</a></li>
+                <li><a href="empleados.jsp" style="text-decoration:none">EMPLEADOS</a></li>
+                <li><a href="proveedores.jsp" style="text-decoration:none">PROVEEDORES</a></li>
             </ul>
         </nav>
         <div class="flex-container" ng-app="demoPortal" ng-controller="portalController as p">
@@ -32,7 +33,7 @@
                 </div>
 
                 <div class="form__section">
-                    <input type="email" class="form__input" placeholder="Escriba su Email">
+                    <input type="email" class="form__input" placeholder="Escriba el Correo Electrónico">
                 </div>
 
                 <div class="form__section">
@@ -50,15 +51,22 @@
                     </div>
                 </div>
             </div>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         </div>	
         <script>
-            
+
             var app = angular.module('demoPortal', []);
             app.controller('portalController', ['$http', controladorPortal]);
             function controladorPortal($http) {
-                var p=this;
-                p.enviar= function (){
-                    alert(p.asunto);
+                var p = this;
+                p.enviar = function () {
+                    alert("El mensaje ha sido enviado exitosamente");
                 };
             }
         </script>

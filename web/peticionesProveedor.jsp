@@ -23,7 +23,8 @@
         "guardar",
         "eliminar",
         "actualizar",
-        "listar"
+        "listar",
+        "ListarPorID"
 	
     });
 
@@ -35,7 +36,7 @@
         // ------------------------------------------------------------------------------------- //
         // -----------------------------------INICIO PROCESOS----------------------------------- //
         // ------------------------------------------------------------------------------------- //
-        if (proceso.equals("crear")) {
+        if (proceso.equals("guardar")) {
 
             //Solicitud de parámetros enviados desde el frontned
             //, uso de request.getParameter("nombre parametro")
@@ -68,9 +69,6 @@
             }
 
         } else if (proceso.equals("listar")) {
-        //Solicitud de parámetros enviados desde el frontned
-            //, uso de request.getParameter("nombre parametro")
-           //creación de objeto y llamado al metodo listar
             try {
                 Proveedor p = new Proveedor();
                 List<Proveedor> lista = p.listarProveedores();
@@ -81,14 +79,29 @@
             }
         } else if (proceso.equals("actualizar")) {
             //creación de objeto y llamado al metodo actualizar
-            int proveedorID = Integer.parseInt(request.getParameter("proveedorID")); 
-            Proveedor p = new Proveedor(proveedorID);
+            int proveedorID = Integer.parseInt(request.getParameter("proveedorID"));            
+            String nombre = request.getParameter("nombre");
+            String ciudad = request.getParameter("ciudad");
+            int telefono = Integer.parseInt(request.getParameter("telefono"));
+            
+            Proveedor p  = new Proveedor(proveedorID, nombre, ciudad, telefono); 
             if (p.actualizarProveedores()) {                     
                 respuesta += "\"" + proceso + "\": true";
             } else {
                 respuesta += "\"" + proceso + "\": false";
             }
-        }
+        } else if (proceso.equals("ListarPorID")) {
+            int proveedorID = Integer.parseInt(request.getParameter("proveedorID"));
+            Proveedor p = null;
+            try {
+                p = new Proveedor(proveedorID);
+                p.getProveedor();
+                respuesta += "\"" + proceso + "\": true,\"Proveedor\":" + new Gson().toJson(p); 
+            } catch (Exception ex) {
+                respuesta += "\"" + proceso + "\": false,\"Proveedor\":[]";
+                Logger.getLogger(Proveedor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
 
         // ------------------------------------------------------------------------------------- //
         // -----------------------------------FIN PROCESOS-------------------------------------- //

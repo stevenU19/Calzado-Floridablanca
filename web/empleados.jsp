@@ -8,9 +8,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
         <link rel="stylesheet" href="CSS/estilosJSP.css">
         <link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet">
-        <link rel="icon" href="IMAGENES/zapato.ico">
+        <link rel="icon" href="IMAGENES/avatar.ico">
 
-        <title>Zapatos - CalzadoFloridablanca</title>
+        <title>Empleados - CalzadoFloridablanca</title>
     </head>
     <body>
         <nav>
@@ -21,46 +21,44 @@
                 <li><a href="empleados.jsp" style="text-decoration:none">EMPLEADOS</a></li>
                 <li><a href="proveedores.jsp" style="text-decoration:none">PROVEEDORES</a></li>
             </ul>
-        </nav>      
-
+        </nav> 
         <div class="container-fluid" style="background: background" ng-app="demoB1" ng-controller="b1Controller as b1" >
             <div class="row">
                 <div class="col-12">
                     <h3>Seccion 1</h3>
                     <div class="row">
                         <div class="col-6"> 
-                            <label>ID del Zapato</label>
-                            <input type="text" class="form-control" placeholder="Digite aquí el zapatoID" ng-model="b1.zapatoID">
+                            <label>Cédula Empleado</label>
+                            <input type="text" class="form-control" placeholder="Digite el número de la Cédula" ng-model="b1.cedula">
                         </div>
                         <div class="col-6">
-                            <label>Tipo de Zapato</label>
-                            <input type="text" class="form-control" placeholder="Digite aquí el Tipo de Zapato" ng-model="b1.tipoZapato">
+                            <label>Nombre</label>
+                            <input type="text" class="form-control" placeholder="Digite el Nombre del empleado" ng-model="b1.nombre">
 
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6">
-                            <label>Talla</label>
-                            <input type="text" class="form-control" placeholder="Digite aquí la Talla del Zapato" ng-model="b1.talla" >
+                            <label>Número de Teléfono</label>
+                            <input type="text" class="form-control" placeholder="Digite el Número telefónico" ng-model="b1.numero" >
                         </div>
                         <div class="col-6">
-                            <label>Material</label>
-                            <input type="text" class="form-control" placeholder="Digite aquí el Tipo de Material" ng-model="b1.material">
+                            <label>Correo</label>
+                            <input type="text" class="form-control" placeholder="Digite el Correo Electrónico" ng-model="b1.correo">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6">
-                            <label>ID del Proveedor</label>                            
-                            <select class="form-control" ng-model="b1.proveedorID"> 
-                                <option ng-repeat="a in b1.Proveedores" value="{{a.proveedorID}}">{{a.nombre}} {{'-'}} {{'Ubicado en: '}} {{a.ciudad}}</option>
-                            </select>
+                            <label>Salario</label>
+                            <input type="text" class="form-control" placeholder="Digite el Salario Devengado" ng-model="b1.salario">
                         </div>
                         <div class="col-6">
-                            <label>Cédula del Empleado</label>                            
-                            <select class="form-control" ng-model="b1.cedulaEmpleado"> 
-                                <option ng-repeat="c in b1.Empleados" value="{{c.cedula}}">{{'C:'}} {{c.cedula}} {{'-'}} {{c.nombre}} {{c.apellido}}</option>
-                            </select>
+                            <label>Fecha de Nacimiento</label>                            
+                            <input type="text" class="form-control" placeholder="Digite la Fecha de Nacimiento" ng-model="b1.fechaNacimiento">
                         </div>
+                    </div>
+                    <div>
+
                     </div>
                     <div class="row">
                         <div class="col-3"><button type="button" class="btn btn-success" ng-click="b1.guardar()">Guardar</button></div>
@@ -68,33 +66,33 @@
                         <div class="col-3"><button type="button" class="btn btn-warning" ng-click="b1.actualizar()">Actualizar</button></div>
                         <div class="col-3"><button type="button" class="btn btn-danger" ng-click="b1.eliminar()">Eliminar</button></div>
                     </div>
-                </div>               
+                </div>                
             </div>
             <div class="row">
                 <div class="col-12">
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col">Identificador Zapato</th>
-                                <th scope="col">Tipo de Zapato</th>
-                                <th scope="col">Talla del Zapato</th>
-                                <th scope="col">Material del Zapato</th>
-                                <th scope="col">ID del Proveedor</th>
-                                <th scope="col">Empleado Responsable</th>
+                                <th scope="col">Cédula Empleado</th>
+                                <th scope="col">Nombre Empleado</th>
+                                <th scope="col">Correo Empleado</th>
+                                <th scope="col">Salario Devengado</th>
+                                <th scope="col">Fecha De Nacimiento Empleado</th>
+                                <th scope="col">Número Telefónico</th>
                                 <th scope="col">Acciones</th>
 
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat=" zap in b1.Zapatos">
-                                <td>{{zap.zapatoID}}</td>
-                                <td>{{zap.tipoZapato}}</td>
-                                <td>{{zap.talla}}</td>
-                                <td>{{zap.material}}</td>
-                                <td>{{zap.proveedorID}}</td>
-                                <td>{{zap.cedulaEmpleado}}</td>
+                            <tr ng-repeat=" emp in b1.Empleados">
+                                <td>{{emp.cedula}}</td>
+                                <td>{{emp.nombre}}</td>
+                                <td>{{emp.correo}}</td>
+                                <td>{{emp.salario}}</td>
+                                <td>{{emp.fechaNacimiento}}</td>
+                                <td>{{emp.numero}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-info" ng-click="b1.editar(zap.zapatoID)">Editar</button>
+                                    <button type="button" class="btn btn-info" ng-click="b1.editar(emp.cedula)">Editar</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -109,19 +107,10 @@
             function controladorB1($http) {
                 var b1 = this;
 
-                consultarProveedores = function () {
-                    var parametros = {proceso: 'listar'};
-                    $http({
-                        method: 'POST',
-                        url: 'peticionesProveedor.jsp',
-                        params: parametros
-                    }).then(function (res) {
-                        b1.Proveedores = res.data.Proveedores;
-                    });
-                };
-
-                consultarEmpleados = function () {
-                    var parametros = {proceso: 'listar'};
+                b1.listar = function () {
+                    var parametros = {
+                        proceso: 'listar'
+                    };
                     $http({
                         method: 'POST',
                         url: 'peticionesEmpleado.jsp',
@@ -131,36 +120,21 @@
                     });
                 };
 
-                consultarEmpleados();
-                consultarProveedores();
-
-                b1.listar = function () {
-                    var parametros = {
-                        proceso: 'listar'
-                    };
-                    $http({
-                        method: 'POST',
-                        url: 'peticionesZapatos.jsp',
-                        params: parametros
-                    }).then(function (res) {
-                        b1.Zapatos = res.data.Zapatos;
-                    });
-                };
-
+//                listar();
 
                 b1.guardar = function () {
                     var parametros = {
                         proceso: 'guardar',
-                        zapatoID: b1.zapatoID,
-                        tipoZapato: b1.tipoZapato,
-                        talla: b1.talla,
-                        material: b1.material,
-                        proveedorID: b1.proveedorID,
-                        cedulaEmpleado: b1.cedulaEmpleado
+                        cedula: b1.cedula,
+                        nombre: b1.nombre,
+                        correo: b1.correo,
+                        salario: b1.salario,
+                        fechaNacimiento: b1.fechaNacimiento,
+                        numero: b1.numero
                     };
                     $http({
                         method: 'POST',
-                        url: 'peticionesZapatos.jsp',
+                        url: 'peticionesEmpleado.jsp',
                         params: parametros
                     }).then(function (res) {
                         if (res.data.ok === true) {
@@ -179,16 +153,16 @@
                 b1.actualizar = function () {
                     var parametros = {
                         proceso: 'actualizar',
-                        zapatoID: b1.zapatoID,
-                        tipoZapato: b1.tipoZapato,
-                        talla: b1.talla,
-                        material: b1.material,
-                        proveedorID: b1.proveedorID,
-                        cedulaEmpleado: b1.cedulaEmpleado
+                        cedula: b1.cedula,
+                        nombre: b1.nombre,
+                        correo: b1.correo,
+                        salario: b1.salario,
+                        fechaNacimiento: b1.fechaNacimiento,
+                        numero: b1.numero
                     };
                     $http({
                         method: 'POST',
-                        url: 'peticionesZapatos.jsp',
+                        url: 'peticionesEmpleado.jsp',
                         params: parametros
                     }).then(function (res) {
                         if (res.data.ok === true) {
@@ -203,15 +177,14 @@
                     });
                 };
 
-
                 b1.eliminar = function () {
                     var parametros = {
                         proceso: 'eliminar',
-                        zapatoID: b1.zapatoID
+                        cedula: b1.cedula
                     };
                     $http({
                         method: 'POST',
-                        url: 'peticionesZapatos.jsp',
+                        url: 'peticionesEmpleado.jsp',
                         params: parametros
                     }).then(function (res) {
                         if (res.data.ok === true) {
@@ -229,19 +202,19 @@
                 b1.editar = function (id) {
                     var parametros = {
                         proceso: 'ListarPorID',
-                        zapatoID: id
+                        cedula: id
                     };
                     $http({
                         method: 'POST',
-                        url: 'peticionesZapatos.jsp',
+                        url: 'peticionesEmpleado.jsp',
                         params: parametros
                     }).then(function (res) {
-                        b1.zapatoID = res.data.Zapato.zapatoID;
-                        b1.tipoZapato = res.data.Zapato.tipoZapato;
-                        b1.talla = res.data.Zapato.talla;
-                        b1.material = res.data.Zapato.material;
-                        b1.proveedorID = res.data.Zapato.proveedorID.toString();
-                        b1.cedulaEmpleado = res.data.Zapato.cedulaEmpleado.toString();
+                        b1.cedula = res.data.Empleado.cedula;
+                        b1.nombre = res.data.Empleado.nombre;
+                        b1.correo = res.data.Empleado.correo;
+                        b1.salario = res.data.Empleado.salario;
+                        b1.fechaNacimiento = res.data.Empleado.fechaNacimiento;
+                        b1.numero = res.data.Empleado.numero;
                     });
                 };
             }
