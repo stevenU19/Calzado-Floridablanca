@@ -6,49 +6,50 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Página Principal</title>
-        <link rel="icon" href="IMAGENES/zapatos.ico">
+        <link rel="icon" href="imagenes/zapato.ico">
 
-        <link rel="stylesheet" href="CSS/style.css">
+        <link rel="stylesheet" href="css/style.css">
         <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet">
+<!--        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">     -->
         <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     </head>
 
     <body>
         <div class="container">
             <nav>
-                <span class="logo">CALZADO FLORIDABLANCA</span>
+                <span class="logo" style="color: #fff;">CALZADO FLORIDABLANCA</span>
                 <ul>
-                    <li><a href="index.html" style="text-decoration:none">INICIO</a></li>
-                    <li><a href="zapatos.jsp" style="text-decoration:none">ZAPATOS</a></li>
-                    <li><a href="empleados.jsp" style="text-decoration:none">EMPLEADOS</a></li>
-                    <li><a href="proveedores.jsp" style="text-decoration:none">PROVEEDORES</a></li>
+                    <li><a href="index.html" style="text-decoration:none;color: #ffffff;">INICIO</a></li>
+                    <li><a href="zapatos.jsp" style="text-decoration:none;color: #ffffff">ZAPATOS</a></li>
+                    <li><a href="empleados.jsp" style="text-decoration:none;color: #ffffff">EMPLEADOS</a></li>
+                    <li><a href="proveedores.jsp" style="text-decoration:none;color: #ffffff">PROVEEDORES</a></li>
+                    <li><a href="portal.html" style="text-decoration:none;color: #ffffff">SOPORTE</a></li>
                 </ul>
-            </nav>
+            </nav>            
             <header>
-                <h1>BIENVENIDOS</h1>
-                <h2>APRECIADO USUARIO</h2>
-                <p>
-                    Este portal es para uso exclusivo de los funcionarios de nuestra empresa Calzado Floridablanca. Si
-                    quieres ponerte en contacto con nosotros para soporte técnico, escríbenos:
-                </p>
+                <div>
+                    <h1>BIENVENIDOS</h1>
+                    <h2>APRECIADO USUARIO</h2>
+                    <p>
+                        Este portal es para uso exclusivo de los funcionarios de nuestra empresa Calzado Floridablanca. Si
+                        quieres ponerte en contacto con nosotros para soporte técnico, escríbenos desde el botón superior.
+                    </p>      
+                </div>
+            </header> 
+            <div class="video">
+                <video id="video" autoplay loop muted>
+                    <source src="imagenes/Publicidad - Tienda de Calzados.mp4" type="video/mp4" />
+                </video>
+            </div>             
+        </div>  
 
-                <button type="button" onclick="location.href = 'portal.html'">Haz click aquí</button>
-            </header>
-            <div class="icons">
-                <a href="https://www.facebook.com/" target="_blank"><i class='bx bxl-facebook'></i></a>
-                <a href="https://www.instagram.com/" target="_blank"><i class='bx bxl-instagram'></i></a>
-                <a href="https://www.twitter.com/" target="_blank"><i class='bx bxl-twitter'></i></a>
-                <a href="https://www.youtube.com/" target="_blank"><i class='bx bxl-youtube'></i></a>               
-
-
-            </div>
-        </div>
-        <script>
-            function redirigir() {
-                window.location.href = "portal.html";
-            }
-        </script>
+        <div class="icons">                
+            <a href="https://www.facebook.com/profile.php?id=100085569352218" target="_blank" style="color: aqua;"><i class='bx bxl-facebook'></i></a>
+            <a href="https://www.instagram.com/calzadoenfloridablanca/" target="_blank" style="color: aqua;"><i class='bx bxl-instagram'></i></a>
+            <a href="https://twitter.com/CalzadoFlorida1" target="_blank" style="color: aqua;"><i class='bx bxl-twitter'></i></a>
+            <a href="https://www.youtube.com/" target="_blank" style="color: aqua;"><i class='bx bxl-youtube'></i></a>
+        </div>  
     </body>
 </html>

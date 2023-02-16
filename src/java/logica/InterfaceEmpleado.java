@@ -18,7 +18,7 @@ public interface InterfaceEmpleado {
     public boolean actualizarEmpleado();
     public List <Empleado> listarEmpleado();
     
-    // ----- Obtener un autor -----
+    // ----- Obtener un empleado -----
     public Empleado getEmpleado();
     
 }

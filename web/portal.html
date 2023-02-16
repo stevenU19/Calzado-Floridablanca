@@ -6,8 +6,8 @@
 
         <title>Enviar Correo - CalzadoFloridablanca</title>
 
-        <link rel="icon" href="IMAGENES/sign.ico">
-        <link rel="stylesheet" href="CSS/portal.css">
+        <link rel="icon" href="imagenes/sign.ico">
+        <link rel="stylesheet" href="css/portal.css">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,28 +17,34 @@
         <script src="https://kit.fontawesome.com/62ea397d3a.js"></script>
     </head>
     <body>
-        <nav>
+        <nav class="encabezado">
             <span class="logo">CALZADO FLORIDABLANCA</span>
             <ul>
-                <li><a href="index.html" style="text-decoration:none">INICIO</a></li>
-                <li><a href="zapatos.jsp" style="text-decoration:none">ZAPATOS</a></li>
-                <li><a href="empleados.jsp" style="text-decoration:none">EMPLEADOS</a></li>
-                <li><a href="proveedores.jsp" style="text-decoration:none">PROVEEDORES</a></li>
+                <li><a href="index.html" style="text-decoration:none;color: #fff;">INICIO</a></li>
+                <li><a href="zapatos.jsp" style="text-decoration:none;color: #fff">ZAPATOS</a></li>
+                <li><a href="empleados.jsp" style="text-decoration:none;color: #fff">EMPLEADOS</a></li>
+                <li><a href="proveedores.jsp" style="text-decoration:none;color: #fff">PROVEEDORES</a></li>
             </ul>
         </nav>
         <div class="flex-container" ng-app="demoPortal" ng-controller="portalController as p">
-            <form class="form">
+            <h3>
+                A continuación, redacte su correo electrónico colocando un asunto que sintetice muy bien la solicitud a realizar. 
+                Seguido de esto escriba una descripción de la solicitud e ingrese el correo de la empresa calzadofloridablanca1@gmail.com.
+                Todo esto tiene como el fin de facilitar el proceso contactando al equipo de soporte técnico.
+            </h3>
+            <form class="form">                
                 <div class="form__section">
-                    <input type="text" class="form__input" placeholder="Escriba el Asunto" ng-model="p.asunto">
+                    <input type="email" name=email class="form__input" onchange="return ValidarEmail(this)" placeholder="Escriba el Correo Electrónico">
                 </div>
 
                 <div class="form__section">
-                    <input type="email" class="form__input" placeholder="Escriba el Correo Electrónico">
-                </div>
+                    <input type="text" class="form__input" placeholder="Escriba el Asunto" ng-model="p.asunto">
+                </div>              
 
                 <div class="form__section">
                     <textarea class="form__input" placeholder="Escriba su Mensaje"></textarea>
-                </div>
+                </div>                
+
                 <div class="form__section">
                     <input type="submit" class="form__input" ng-click="p.enviar()">
                 </div>
@@ -52,13 +58,18 @@
                 </div>
             </div>
 
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         </div>	
+        <script>
+            function ValidarEmail(mail) {
+                if (mail.value.indexOf("@") === -1) {
+//                    alert("Mail Inválido");
+//                    mail.focus();
+                    mail.select();
+                } else {
+                    alert("El mensaje ha sido enviado exitosamente");
+                }
+            }
+        </script>
         <script>
 
             var app = angular.module('demoPortal', []);
@@ -66,7 +77,11 @@
             function controladorPortal($http) {
                 var p = this;
                 p.enviar = function () {
-                    alert("El mensaje ha sido enviado exitosamente");
+                    if (mail.value.indexOf("@") === -1) {
+                        ValidarEmail(this);
+                    } else {
+                        alert("El mensaje ha sido enviado exitosamente");
+                    }
                 };
             }
         </script>

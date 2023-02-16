@@ -22,7 +22,7 @@ public class Demo {
 //            System.out.println(zapato);
 //        }
 //        EnvioCorreo.enviarCorreo("Hola Mundo", "Esto es una prueba", "wilfarfan2001@gmail.com");
-        ClaseEnvioCorreo.transfer_to_email("wilmer2194285@correo.uis.edu.co");
+//        ClaseEnvioCorreo.transfer_to_email("wilmer2194285@correo.uis.edu.co");
 
     }
 

@@ -6,79 +6,94 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-        <link rel="stylesheet" href="CSS/estilosJSP.css">
+        <link rel="stylesheet" href="css/style.css">
         <link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet">
-        <link rel="icon" href="IMAGENES/proveedor.ico">        
+        <link rel="icon" href="imagenes/proveedor.ico">        
+
         <title>Proveedores - CalzadoFloridablanca</title>
     </head>
     <body>
         <nav>
-            <span class="logo">CALZADO FLORIDABLANCA</span>
+            <span class="logo" style="color: #ffffff;">CALZADO FLORIDABLANCA</span>
             <ul>
-                <li><a href="index.html" style="text-decoration:none">INICIO</a></li>
-                <li><a href="zapatos.jsp" style="text-decoration:none">ZAPATOS</a></li>
-                <li><a href="empleados.jsp" style="text-decoration:none">EMPLEADOS</a></li>
-                <li><a href="proveedores.jsp" style="text-decoration:none">PROVEEDORES</a></li>
+                <li><a href="index.html" style="text-decoration:none;color: #ffffff;">INICIO</a></li>
+                <li><a href="zapatos.jsp" style="text-decoration:none;color: #ffffff">ZAPATOS</a></li>
+                <li><a href="empleados.jsp" style="text-decoration:none;color: #ffffff">EMPLEADOS</a></li>
+                <li><a href="proveedores.jsp" style="text-decoration:none;color: #ffffff">PROVEEDORES</a></li>
             </ul>
-        </nav>   
-        <div class="container-fluid" style="background: background" ng-app="demoB1" ng-controller="b1Controller as b1" >
-            <div class="row">
-                <div class="col-12">
-                    <h3>Seccion 1</h3>
-                    <div class="row">
-                        <div class="col-6"> 
-                            <label>ID del Proveedor</label>
-                            <input type="text" class="form-control" placeholder="Digite aquí el ID del Proveedor" ng-model="b1.proveedorID">
-                        </div>
-                        <div class="col-6">
-                            <label>Nombre</label>
-                            <input type="text" class="form-control" placeholder="Digite aquí el Nombre de la Empresa" ng-model="b1.nombre">
+        </nav>
 
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <label>Ciudad</label>
-                            <input type="text" class="form-control" placeholder="Digite aquí la Ciudad Origen de la Empresa" ng-model="b1.ciudad" >
-                        </div>
-                        <div class="col-6">
-                            <label>Teléfono</label>
-                            <input type="text" class="form-control" placeholder="Digite aquí el Teléfono de la Empresa" ng-model="b1.telefono">
-                        </div>
+        <div class="container-fluid" style="background: background" ng-app="demoB1" ng-controller="b1Controller as b1" >
+            <div class="row" style="padding-bottom: 25px">
+                <div class="col-12">
+                    <div>
+                        <h1 class="font-weight-bold text-center" style="padding: 50px">SECCIÓN PARA EDITAR LOS PROVEEDORES</h1>
+                        <h3 style="padding: 5px">
+                            A continuación encontrará un menú para hacer las respectivas modificaciones a los proveedores de Calzado Floridablanca.
+                            Si desea consultar los proveedores de la empresa, oprima el botón CONSULTAR.
+                            Si desea inscribir un proveedor, rellene los datos y oprima el botón GUARDAR.
+                            Si desea modificar los datos de un proveedor, primero liste con el botón CONSULTAR, busque el proveedor deseado y oprima el botón EDITAR.
+                            Inmediatamente se proyectará la información en los campos superiores. Cambie la información y oprima el botón ACTUALIZAR.
+                            Para eliminar un registro, realice los pasos anteriores y finalmente oprima el botón ELIMINAR.
+                        </h3>
                     </div>
 
                     <div>
+                        <div class="row" style="background-color: #5f9; padding: 25px">
+                            <div class="col-6"> 
+                                <h4>ID del Proveedor</h4>
+                                <input type="text" class="form-control" placeholder="Digite aquí el ID del Proveedor" ng-model="b1.proveedorID">
+                            </div>
+                            <div class="col-6">
+                                <h4>Nombre</h4>
+                                <input type="text" class="form-control" placeholder="Digite aquí el Nombre de la Empresa" ng-model="b1.nombre">
 
+                            </div>
+                        </div>
+                        <div class="row" style="background-color: #5f9; padding: 25px">
+                            <div class="col-6">
+                                <h4>Ciudad</h4>
+                                <input type="text" class="form-control" placeholder="Digite aquí la Ciudad Origen de la Empresa" ng-model="b1.ciudad" >
+                            </div>
+                            <div class="col-6">
+                                <h4>Teléfono</h4>
+                                <input type="text" class="form-control" placeholder="Digite aquí el Teléfono de la Empresa" ng-model="b1.telefono">
+                            </div>
+                        </div>
+
+                        <div>
+
+                        </div>
+                        <div class="row" style="background-color: #5f9; padding-bottom: 15px">
+                            <div class="col-3 text-center"><button type="button" class="btn btn-success btn-lg" ng-click="b1.guardar()">GUARDAR</button></div>
+                            <div class="col-3 text-center"><button type="button" class="btn btn-primary btn-lg" ng-click="b1.listar()">CONSULTAR</button></div>
+                            <div class="col-3 text-center"><button type="button" class="btn btn-warning btn-lg" ng-click="b1.actualizar()">ACTUALIZAR</button></div>
+                            <div class="col-3 text-center"><button type="button" class="btn btn-danger btn-lg" ng-click="b1.eliminar()">ELIMINAR</button></div>
+                        </div>
                     </div>
-                    <div class="row">
-                        <div class="col-3"><button type="button" class="btn btn-success" ng-click="b1.guardar()">Guardar</button></div>
-                        <div class="col-3"><button type="button" class="btn btn-primary" ng-click="b1.listar()">Consultar</button></div>
-                        <div class="col-3"><button type="button" class="btn btn-warning" ng-click="b1.actualizar()">Actualizar</button></div>
-                        <div class="col-3"><button type="button" class="btn btn-danger" ng-click="b1.eliminar()">Eliminar</button></div>
-                    </div>
+
                 </div>               
             </div>
-            <div class="row">
+            <div class="row" style="background-color: #AEF5F3; padding-top: 25px">
                 <div class="col-12">
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col">ID del Proveedor</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Ciudad</th>
-                                <th scope="col">Telefono</th>
+                                <th class="text-center" scope="col">ID del Proveedor</th>
+                                <th class="text-center" scope="col">Nombre</th>
+                                <th class="text-center" scope="col">Ciudad</th>
+                                <th class="text-center" scope="col">Telefono</th>
                                 <th scope="col">Acciones</th>
-
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody style="background-color: #fff;">
                             <tr ng-repeat="pro in b1.Proveedor">
-                                <td>{{pro.proveedorID}}</td>
-                                <td>{{pro.nombre}}</td>
-                                <td>{{pro.ciudad}}</td>
-                                <td>{{pro.telefono}}</td>
+                                <td class="text-center">{{pro.proveedorID}}</td>
+                                <td class="text-center">{{pro.nombre}}</td>
+                                <td class="text-center">{{pro.ciudad}}</td>
+                                <td class="text-center">{{pro.telefono}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-info" ng-click="b1.editar(pro.proveedorID)">Editar</button>
+                                    <button type="button" class="btn btn-info btn-lg" ng-click="b1.editar(pro.proveedorID)">EDITAR</button>
                                 </td>
                             </tr>
                         </tbody>

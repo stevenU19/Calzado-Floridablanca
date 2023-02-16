@@ -5,8 +5,13 @@
 
 .logo {
     font-weight: 700;
-    font-size: 2.8rem;
-    color: black;
+    font-size: 3.2rem;
+    color: white;    
+}
+
+.encabezado {
+    background-color: black;
+    padding-bottom: 200px;
 }
 
 nav {
@@ -22,21 +27,21 @@ ul li {
     list-style: none;
     padding: 6px 20px;
     font-weight: 500;
-    font-size: 1.3rem;
+    font-size: 1.9rem;
     text-decoration: none;
     cursor: pointer;
     transition: all 0.3s ease 0s;
-    color: black;
+    color: white;
 }
 
 ul li:hover {
-    background-color: #5f9;
+    background-color: #701300;
     border-radius: 25px;
     text-decoration: none;
 }
 
 body {
-    background-color: rgba(90, 90, 90, 0.637);
+    background-color: #000;
 }
 
 .flex-container {
@@ -45,7 +50,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     background: #C4C4C4;
-    margin: 50px 50px;
+    margin: 50px 50px;    
     padding: 20px;
     border: 8px solid #000;
     outline: 4px solid #094;
@@ -56,7 +61,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: rgb(99, 99, 99);
+    background-color: #282121;
 }
 
 .form {
@@ -73,9 +78,10 @@ header {
     padding: 7px;
     margin: 6px 0;
     border: none;
-    border-bottom: 3px solid #1c7;
+    border-bottom: 3px solid #701300;
     background: transparent;
     color: #fff;
+    font-size: 1.5rem;
 }
 
 .form__input:focus {
@@ -120,21 +126,27 @@ header {
 }
 
 .form input[type="submit"] {
-    background-color: #094;
+    background-color: #400900;
     border-bottom: none;
     padding: 12px;
 }
 
 .form input[type="submit"]:hover {
-    background-color: #072;
+    background-color: #200000;
     border-bottom: none;
     padding: 12px;
 }
 
 .form input[type="submit"]:focus {
-    background-color: #072;
+    background-color: #200000;
 }
 
 .form input[type="submit"]:active {
-    background: linear-gradient(to bottom, #072, #050);
+    background: linear-gradient(to bottom, #200000, #050);
+}
+
+h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align:center;
 }

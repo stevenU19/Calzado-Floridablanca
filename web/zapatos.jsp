@@ -6,95 +6,110 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-        <link rel="stylesheet" href="CSS/estilosJSP.css">
+        <link rel="stylesheet" href="css/style.css">
         <link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet">
-        <link rel="icon" href="IMAGENES/zapato.ico">
+        <link rel="icon" href="imagenes/zapato.ico">
 
         <title>Zapatos - CalzadoFloridablanca</title>
     </head>
     <body>
         <nav>
-            <span class="logo">CALZADO FLORIDABLANCA</span>
+            <span class="logo" style="color: #ffffff;">CALZADO FLORIDABLANCA</span>
             <ul>
-                <li><a href="index.html" style="text-decoration:none">INICIO</a></li>
-                <li><a href="zapatos.jsp" style="text-decoration:none">ZAPATOS</a></li>
-                <li><a href="empleados.jsp" style="text-decoration:none">EMPLEADOS</a></li>
-                <li><a href="proveedores.jsp" style="text-decoration:none">PROVEEDORES</a></li>
+                <li><a href="index.html" style="text-decoration:none;color: #ffffff;">INICIO</a></li>
+                <li><a href="zapatos.jsp" style="text-decoration:none;color: #ffffff">ZAPATOS</a></li>
+                <li><a href="empleados.jsp" style="text-decoration:none;color: #ffffff">EMPLEADOS</a></li>
+                <li><a href="proveedores.jsp" style="text-decoration:none;color: #ffffff">PROVEEDORES</a></li>
             </ul>
-        </nav>      
+        </nav>   
 
         <div class="container-fluid" style="background: background" ng-app="demoB1" ng-controller="b1Controller as b1" >
-            <div class="row">
+            <div class="row" style="padding-bottom: 25px">
                 <div class="col-12">
-                    <h3>Seccion 1</h3>
-                    <div class="row">
-                        <div class="col-6"> 
-                            <label>ID del Zapato</label>
-                            <input type="text" class="form-control" placeholder="Digite aquí el zapatoID" ng-model="b1.zapatoID">
-                        </div>
-                        <div class="col-6">
-                            <label>Tipo de Zapato</label>
-                            <input type="text" class="form-control" placeholder="Digite aquí el Tipo de Zapato" ng-model="b1.tipoZapato">
+                    <div>
+                        <h1 class="font-weight-bold text-center" style="padding: 50px">SECCIÓN PARA EDITAR ZAPATOS</h1>
+                        <h3 style="padding: 5px">
+                            A continuación encontrará un menú para hacer las respectivas modificaciones a los zapatos fabricados de Calzado Floridablanca.
+                            Si desea consultar los zapatos fabricados de la empresa, oprima el botón CONSULTAR.
+                            Si desea inscribir un empleado, rellene los datos y oprima el botón GUARDAR.
+                            Si desea modificar los datos de un zapato, primero liste con el botón CONSULTAR, busque el zapato deseado y oprima el botón EDITAR.
+                            Inmediatamente se proyectará la información en los campos superiores. Cambie la información y oprima el botón ACTUALIZAR.
+                            Para eliminar un registro, realice los pasos anteriores y finalmente oprima el botón ELIMINAR.
+                        </h3>
+                    </div>
 
+                    <div>
+                        <div class="row" style="background-color: #5f9; padding: 25px">
+                            <div class="col-6"> 
+                                <h4>ID del Zapato</h4>
+                                <input type="text" class="form-control" placeholder="Digite aquí el zapatoID" ng-model="b1.zapatoID">
+                            </div>
+                            <div class="col-6">
+                                <h4>Tipo de Zapato</h4>
+                                <input type="text" class="form-control" placeholder="Digite aquí el Tipo de Zapato" ng-model="b1.tipoZapato">
+
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <label>Talla</label>
-                            <input type="text" class="form-control" placeholder="Digite aquí la Talla del Zapato" ng-model="b1.talla" >
+                        <div class="row" style="background-color: #5f9; padding: 25px">
+                            <div class="col-6">
+                                <h4>Talla</h4>
+                                <input type="text" class="form-control" placeholder="Digite aquí la Talla del Zapato" ng-model="b1.talla" >
+                            </div>
+                            <div class="col-6">
+                                <h4>Material</h4>
+                                <input type="text" class="form-control" placeholder="Digite aquí el Tipo de Material" ng-model="b1.material">
+                            </div>
                         </div>
-                        <div class="col-6">
-                            <label>Material</label>
-                            <input type="text" class="form-control" placeholder="Digite aquí el Tipo de Material" ng-model="b1.material">
+                        <div class="row" style="background-color: #5f9; padding: 25px">
+                            <div class="col-6">
+                                <h4>ID del Proveedor</h4>                            
+                                <select class="form-control" ng-model="b1.proveedorID"> 
+                                    <option ng-repeat="a in b1.Proveedores" value="{{a.proveedorID}}">{{a.nombre}} {{'-'}} {{'Ubicado en: '}} {{a.ciudad}}</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <h4>Cédula del Empleado</h4>                            
+                                <select class="form-control" ng-model="b1.cedulaEmpleado"> 
+                                    <option ng-repeat="c in b1.Empleados" value="{{c.cedula}}">{{'C:'}} {{c.cedula}} {{'-'}} {{c.nombre}} {{c.apellido}}</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <label>ID del Proveedor</label>                            
-                            <select class="form-control" ng-model="b1.proveedorID"> 
-                                <option ng-repeat="a in b1.Proveedores" value="{{a.proveedorID}}">{{a.nombre}} {{'-'}} {{'Ubicado en: '}} {{a.ciudad}}</option>
-                            </select>
+                        <div class="row" style="background-color: #5f9; padding-bottom: 15px">
+                            <div class="col-3 text-center"><button type="button" class="btn btn-success btn-lg" ng-click="b1.guardar()">GUARDAR</button></div>
+                            <div class="col-3 text-center"><button type="button" class="btn btn-primary btn-lg" ng-click="b1.listar()">CONSULTAR</button></div>
+                            <div class="col-3 text-center"><button type="button" class="btn btn-warning btn-lg" ng-click="b1.actualizar()">ACTUALIZAR</button></div>
+                            <div class="col-3 text-center"><button type="button" class="btn btn-danger btn-lg" ng-click="b1.eliminar()">ELIMINAR</button></div>
                         </div>
-                        <div class="col-6">
-                            <label>Cédula del Empleado</label>                            
-                            <select class="form-control" ng-model="b1.cedulaEmpleado"> 
-                                <option ng-repeat="c in b1.Empleados" value="{{c.cedula}}">{{'C:'}} {{c.cedula}} {{'-'}} {{c.nombre}} {{c.apellido}}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-3"><button type="button" class="btn btn-success" ng-click="b1.guardar()">Guardar</button></div>
-                        <div class="col-3"><button type="button" class="btn btn-primary" ng-click="b1.listar()">Consultar</button></div>
-                        <div class="col-3"><button type="button" class="btn btn-warning" ng-click="b1.actualizar()">Actualizar</button></div>
-                        <div class="col-3"><button type="button" class="btn btn-danger" ng-click="b1.eliminar()">Eliminar</button></div>
-                    </div>
-                </div>               
+                    </div>    
+
+                </div>
+
             </div>
-            <div class="row">
+            <div class="row" style="background-color: #AEF5F3; padding-top: 25px">
                 <div class="col-12">
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col">Identificador Zapato</th>
-                                <th scope="col">Tipo de Zapato</th>
-                                <th scope="col">Talla del Zapato</th>
-                                <th scope="col">Material del Zapato</th>
-                                <th scope="col">ID del Proveedor</th>
-                                <th scope="col">Empleado Responsable</th>
+                                <th class="text-center" scope="col">Identificador Zapato</th>
+                                <th class="text-center" scope="col">Tipo de Zapato</th>
+                                <th class="text-center" scope="col">Talla del Zapato</th>
+                                <th class="text-center" scope="col">Material del Zapato</th>
+                                <th class="text-center" scope="col">ID del Proveedor</th>
+                                <th class="text-center" scope="col">Empleado Responsable</th>
                                 <th scope="col">Acciones</th>
 
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody style="background-color: #fff;">
                             <tr ng-repeat=" zap in b1.Zapatos">
-                                <td>{{zap.zapatoID}}</td>
-                                <td>{{zap.tipoZapato}}</td>
-                                <td>{{zap.talla}}</td>
-                                <td>{{zap.material}}</td>
-                                <td>{{zap.proveedorID}}</td>
-                                <td>{{zap.cedulaEmpleado}}</td>
+                                <td  class="text-center">{{zap.zapatoID}}</td>
+                                <td class="text-center">{{zap.tipoZapato}}</td>
+                                <td class="text-center">{{zap.talla}}</td>
+                                <td class="text-center">{{zap.material}}</td>
+                                <td class="text-center">{{zap.proveedorID}}</td>
+                                <td class="text-center">{{zap.cedulaEmpleado}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-info" ng-click="b1.editar(zap.zapatoID)">Editar</button>
+                                    <button type="button" class="btn btn-info btn-lg" ng-click="b1.editar(zap.zapatoID)">EDITAR</button>
                                 </td>
                             </tr>
                         </tbody>

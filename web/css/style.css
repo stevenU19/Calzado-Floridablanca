@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Share Tech', sans-serif;
+}
+
+.container {    
+    width: 100%;
+    height: 100vh;
+    background-color: #282828;
+    min-width: 1200px;
+    position: relative;
+}
+
+.logo {
+    font-weight: 600;
+    font-size: 3.8rem;
+    padding-top: 40px;
+}
+
+nav {
+    padding: 10px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #000000;
+    text-decoration: none;
+}
+
+ul li {
+    display: inline-block;
+    list-style: none;
+    padding: 6px 20px;
+    font-weight: 800;
+    font-size: 1.9rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+ul li:hover {
+    background-color: #5f9;
+    border-radius: 25px;
+    text-decoration: none;
+}
+
+header {
+    position: absolute;
+    bottom: 30%;
+    padding: 0 50px;
+}
+
+header h1 {
+    font-size: 5rem;
+    color: #ffffff;
+}
+
+header h2 {
+    font-size: 3rem;
+    color: #ffffff;
+}
+
+header p {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.icons {
+    position: absolute;
+    bottom: 8%;
+    padding: 0 50px;
+    color: #ffffff;
+}
+
+.icons i {
+    font-size: 2.5rem;
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+.icons i:hover {
+    color: #5f9;
+    transition: all 0.3s ease 0s;
+}
+
+.icons after {
+    color: #ffffff;
+}
+
+/*button {   
+    width: 140px;
+    height: 80px;
+    border: 0;
+    outline: none;
+    color: #000;
+    font-weight: 800;
+    font-size: 1.9rem;
+    border: none;
+    cursor: pointer;
+    background-color: #5f9;
+    border-radius: 25px;
+    transition: width 0.5s;
+}
+
+button img {
+    display: none;
+}
+
+button:hover img {
+    display: block;
+}
+
+button:hover {
+    display: inline;
+    align-items: center;
+    justify-content: space-between;
+    width: 150px;
+}*/
+
+/* video css */
+.video {
+    position: static;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%);
+}
+video#video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
